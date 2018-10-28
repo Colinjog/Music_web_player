@@ -1,0 +1,16 @@
+#header.login,#header.reg,#header.info{
+    float:right;
+    width:35px;
+    height:30px;
+    line-height:30px
+    cursor:pointer;
+}
+#header.info{
+    width:80px;
+    display:none;
+}
+#login div.info{
+    padding:15px 0 5px 0;
+    color:maroon;
+    text-align:center;
+}
