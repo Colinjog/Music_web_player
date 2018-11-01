@@ -2,9 +2,16 @@ from django.db import models
 
 # Create your models here.
 
-class Played_Music(models.Model):
 
 class Account(models.Model):
-    username = models.CharField(max_length=20)
-    password = models.CharField(max_length=20)
+    username = models.CharField(max_length=20, default="")
+    password = models.CharField(max_length=20, default="")
+    email = models.EmailField(max_length=254,)
+
+class PlayedMusic(models.Model):
+    music_name = models.CharField(max_length=30)
+    music_id = models.CharField(max_length=10)
+
+    account = models.ForeignKey(Account, on_delete=models.CASCADE)
+
 

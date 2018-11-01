@@ -63,7 +63,7 @@ class Crawler:
 if __name__=="__main__":
     spider = Crawler()
 
-    spider.getmusic("hello")
+    spider.getmusic("shake it off")
     print(spider.getouterurl())
     print(spider.getlyrics())
     spider.getmusic('成都')

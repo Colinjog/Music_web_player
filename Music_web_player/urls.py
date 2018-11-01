@@ -18,8 +18,10 @@ from django.urls import path
 from Music_web_player import view
 from django.urls import include
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', view.index),
+    path('home/', view.index, name='home'),
     path('polls/', include('polls.urls')),
+    path('login/', include('login.urls'))
 ]
