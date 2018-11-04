@@ -1,10 +1,134 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>主页</title>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>MUSIC</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" href="../../static/css/layui.css">
+    <link rel="stylesheet" href="../../static/css/layui.mobile.css">
+    <link rel="stylesheet" type="text/css" href="../../static/css/APlayer.min.css">
+    <link rel="stylesheet" href="../../static/css/style.css"></link>
+{#    <script src="../../static/js/layui.all.js" type="text/javascript"></script>#}
+{#    <script src="../../static/js/Jquery.min.js"></script>#}
+{#    <script src="../../static/js/background-blur.js"></script>#}
+    <style>
+
+    </style>
 </head>
 <body>
+<!-- 头部 -->
+<div id="header" class="layui-header">
+
+    <div class="layui-container header-content">
+        <div class="logo">
+            <p>Yoho! Music</p>
+        </div>
+        <ul class="layui-nav">
+            <li class="layui-nav-item index"><a href="#" onclick="header(0);">首页</a></li>
+            <li class="layui-nav-item top"><a href="#" onclick="header(1);">排行榜</a></li>
+            <li class="layui-nav-item list"><a href="#" onclick="header(2);">歌单</a></li>
+            <li class="layui-nav-item about"><a href="#" onclick="header(3);">关于</a></li>
+        </ul>
+        <div class="search">
+
+            <input class="layui-input " id="search" type="search" placeholder="请输入音乐名称回车搜索">
+        </div>
+    </div>
+</div>
+<div class="layui-container" id="content">
+    <div class="layui-tab" id="top" lay-filter="top">
+        <ul class="layui-tab-title">
+            <li class="layui-this">网易云音乐</li>
+            <li>QQ音乐</li>
+            <li>酷狗音乐</li>
+        </ul>
+    </div>
+    <div class="layui-tab-content">
+        <div class="layui-tab-item layui-show">
+            <div class="music-list">
+                <ul>
+                    <li class="music-list-li music-list-header">
+                        <div class="layui-row">
+
+                            <div class="layui-col-xs1">
+                                <div class="number">序号</div>
+                            </div>
+                            <div class="layui-col-xs7">
+                                <div class="title">歌曲</div>
+                            </div>
+                            <div class="layui-col-xs1">
+                                <div class="play">播放</div>
+                            </div>
+                            <div class="layui-col-xs1">
+                                <div class="download">下载</div>
+                            </div>
+                            <div class="layui-col-xs2">
+                                <div class="time">时长</div>
+                            </div>
+
+                        </div>
+                    </li>
+                    <div id="add">
+
+                        {% for music in music_list %}
+
+                            <div class="layui-row">
+                                <div class="layui-col-xs1">
+                                    <div class="number">{{ forloop.counter }}</div>
+                                </div>
+                                <div class="layui-col-xs7 text-hide">
+                                    <div class="pic list-song">
+                                        <img src='{{ music.pic_src }}' alt="loadimg...">
+                                    </div>
+                                    <div class="title list-song">
+                                        <p>{{ music.music_title }}</p>
+                                    </div>
+                                    <div class="author list-song">
+                                         <p>{{ music.author }}</p>
+                                    </div>
+                                </div>
+
+                                <div class="layui-col-xs1">
+                                    <div class="play">
+                                        <a onclick="playThis(0,0)" value="0">
+                                            <i class="layui-icon icon-player" value="0" style="font-size:20px;color:#049688;"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="layui-col-xs1">
+                                    <div class="download">
+                                        <a href='{{ music.music_src }}' download="{{ music.music_title }}">
+                                            <i class="layui-icon" style="font-size:20px;color:#049688;"></i>
+                                        </a>
+{#                                        <a href="{% static 'img/login.jpg' %}" download="a">#}
+{#                                        <i class="layui-icon" style="font-size:20px;color:#049688;"></i>#}
+{#                                        </a>#}
+                                        <audio class="audio" src="{{ music.music_src }}" hidden="true"></audio>
+                                    </div>
+                                </div>
+                                <div class="layui-col-xs2">
+                                    <div class="time">{{ music.time }}</div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="layui-container" >
+    <div id="page"></div>
+</div>
+
+<footer id="footer" class="layui-footer">
+    <div class="layui-container">
+        <div id="aplayer"></div>
+    </div>
+</footer>
 
 </body>
-</html>
+</html>        
+        

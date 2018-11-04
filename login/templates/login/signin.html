@@ -1,42 +1,78 @@
-<html>
-<head>
-<title>登陆注册页面</title>
-</head>
-<body>
-  <div class="big">
-        <h1 align=center>多平台音乐搜索登陆</h1>
-        <form action='{% url "login:sign_in" %}' method="post">
-            {% csrf_token %}
-        <p>用户名：
-        <input type="text" class=txt size="20" maxlength="30" name="username"/>
-        </p>
-        <p>密&nbsp;&nbsp;&nbsp;&nbsp;码：
-          <input type="password" class=txt size="20" name="password"/>
-        <br><br>
-        <input type="submit" name="submit" value="登陆"/>
-        &nbsp;&nbsp;&nbsp;&nbsp;<a href="{% url 'login:sign_up'%}">注册</a> </p>
+<!DOCTYPE html>   
+<html lang="en">   
+<head>   
+    <meta charset="utf-8">   
+    <title>MUSIC PLAYER登陆</title>   
+    <style type="text/css"> 
+	     h1 {
+	     font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+         font-size: 32px;
+	     color: #00F;
+	     }
+	     input:focus{
+			 outline:red dotted thin;
+			 }
+		*{   
+            margin: 5px;   
+            padding: 15px;   
+            
+        }   
+       .register{ 
+            width: 350px;   
+            height: 400px; 
+			text-align: center;
+		    background-color: #FFF;
+			border:#0084FF 1px solid; 
+		    box-shadow:2px 2px 4px -2px blue inset,3px 3px 6px #000,6px 6px gray;   
+            position: absolute;   
+            top: 50%;   
+            left: 50%;   
+            -webkit-transform: translate(-50%, -50%);   
+            -moz-transform: translate(-50%, -50%);   
+            -ms-transform: translate(-50%, -50%);   
+            -o-transform: translate(-50%, -50%);   
+            transform: translate(-50%,-50%);   
+        }  
+		.button1{
+			width:80px;
+			height:30px;
+			background-color: #0CF; 
+			position:absolute;
+			bottom:15px;
+			right:220px;
+		}
+		.button2{
+			width:80px;
+			height:30px;
+			background-color: #0CF; 
+			position:absolute;
+			bottom:15px;
+			right:50px;
+		}
+    body {
+	background-image: url(../../../static/img/register.jpg);
+	background-repeat: no-repeat;
+	background-size:100% 100%;
+	background-attachment:fixed;
+}
+    </style>   
+</head>   
+<body>   
+    <div class="register">
+        <h1 align=center>MUSIC PLAYER登陆</h1>
+        <br>
+        <form method="post">
+        <input placeholder=用户名 type="text" class=txt size="30" maxlength="30" name="username"/>
+        <input placeholder=密码 type="password" class=txt size="30" name="password"/>
+        <div class="button1">
+        <p>登陆</p>
+        <a href="document.getElementByld('button').submit();"></a>
+        </div>
+        <div class="button2">
+        <p>注册</p>
+        <a href="document.getElementByld('button').submit();"></a>
+        </div>
         </form>
-      </div>
-</body>
-</html>
-
-<style>
-    *{
-        padding:5px;
-        margin:5px;
-    }
-    body{
-        font-family:"宋体";
-        font-size:12px;
-    }
-    .big{
-        width:350px;
-        border:#0033FF 1px solid;
-        margin:10px 0 0 20px;
-    }
-    .up p{
-        margin:5px;
-        text-align:center;
-    }
-  </style>
-
+    </div>  
+</body>   
+</html>  
