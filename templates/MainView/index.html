@@ -18,6 +18,7 @@
     </style>
 </head>
 <body>
+
 <!-- 头部 -->
 <div id="header" class="layui-header">
 
@@ -45,6 +46,8 @@
             <li>酷狗音乐</li>
         </ul>
     </div>
+{#    music list#}
+{#        music_title music_pic_src music_src author time album_pic_src music_id#}
     <div class="layui-tab-content">
         <div class="layui-tab-item layui-show">
             <div class="music-list">
@@ -71,7 +74,6 @@
                         </div>
                     </li>
                     <div id="add">
-
                         {% for music in music_list %}
 
                             <div class="layui-row">
@@ -80,7 +82,7 @@
                                 </div>
                                 <div class="layui-col-xs7 text-hide">
                                     <div class="pic list-song">
-                                        <img src='{{ music.pic_src }}' alt="loadimg...">
+                                        <img src='{{ music.music_pic_src }}' alt="loadimg...">
                                     </div>
                                     <div class="title list-song">
                                         <p>{{ music.music_title }}</p>
@@ -131,4 +133,8 @@
 
 </body>
 </html>        
-        
+
+
+
+
+
