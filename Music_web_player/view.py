@@ -7,9 +7,9 @@ def index(request):
     print(request.COOKIES)
     context = {}
 
-    context['music_list '] = _search('shake it off')
+    context['music_list'] = _search('shake it off')
 
-    return render(request, 'MainView/index.html',context=context)
+    return render(request,'MainView/index.html',context)
     # else:
     #     return HttpResponseRedirect(reverse('login:sign_in'))
 

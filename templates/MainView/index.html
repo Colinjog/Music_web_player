@@ -74,8 +74,9 @@
                         </div>
                     </li>
                     <div id="add">
+                        {{ list.hello}}
+                        <li class="music-list-li">
                         {% for music in music_list %}
-
                             <div class="layui-row">
                                 <div class="layui-col-xs1">
                                     <div class="number">{{ forloop.counter }}</div>
@@ -107,7 +108,7 @@
 {#                                        <a href="{% static 'img/login.jpg' %}" download="a">#}
 {#                                        <i class="layui-icon" style="font-size:20px;color:#049688;"></i>#}
 {#                                        </a>#}
-                                        <audio class="audio" src="{{ music.music_src }}" hidden="true"></audio>
+                                        <audio class="audio" src={{music.music_src}} hidden="true"></audio>
                                     </div>
                                 </div>
                                 <div class="layui-col-xs2">
@@ -115,7 +116,9 @@
                                 </div>
                             </div>
                         {% endfor %}
+                        </li>
                     </div>
+
                 </ul>
             </div>
         </div>
