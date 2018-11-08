@@ -129,6 +129,5 @@ STATICFILES_DIRS = [
     ('js',os.path.join(STATIC_ROOT,'js')),
     ('img',os.path.join(STATIC_ROOT,'img')),
     ('music',os.path.join(STATIC_ROOT,'music')),
-
 ]
 

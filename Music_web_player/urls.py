@@ -26,4 +26,5 @@ urlpatterns = [
     path('login/', include('login.urls')),
     path('',view.default_index),
     path('text/',view.text),
+    path("search/",view.search, name='search')
 ]
