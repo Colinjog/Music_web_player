@@ -7,6 +7,7 @@ var musicLength = 0;//歌单长度
 var ap;//播放器
 var musicList = new Array();//歌单
 var song  = new Object();//单个歌曲
+
 function aplayerLoadingSong(musicList,type){
     if (ap==null){
         ap = new APlayer({

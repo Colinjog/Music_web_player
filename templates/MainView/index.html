@@ -35,7 +35,7 @@
             <li class="layui-nav-item about"><a href="#" onclick="header(3);">关于</a></li>
         </ul>
         <div class="search">
-            <form id="search" action="{% url 'search' %}" method="POST">
+            <form id="search" action="{% url 'search' 1 %}" method="POST" >
                 {% csrf_token %}
             <input class="layui-input "   id="search" type="search" placeholder="请输入音乐名称回车搜索" onsubmit="return checkForm()" name="music">
             </form>
@@ -131,7 +131,21 @@
 
 
 <div class="layui-container" >
-    <div id="page"></div>
+    <div id="page">
+            <div class="layui-box layui-laypage layui-laypage-default">
+                <a href="{% url 'search' prev_page %}" class="layui-laypage-prev ">
+                    上一页
+                </a>
+                <span class="layui-laypage-curr">
+                    <em class="layui-laypage-curr"></em>
+                    <em><a href="{% url 'search' page %}">{{ page }}</a></em>
+                </span>
+                <a href="{% url 'search'  last_page %}" class="layui-laypage-last" title="尾页">尾页</a>
+                <a href="{% url 'search' next_page %}" class="layui-laypage-next">下一页</a>
+            </div>
+    </div>
+
+
 </div>
 
 <footer id="footer" class="layui-footer">
