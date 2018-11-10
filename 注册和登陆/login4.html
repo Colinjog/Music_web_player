@@ -1,0 +1,71 @@
+<!DOCTYPE html>   
+<html lang="en">   
+<head>   
+    <meta charset="utf-8">   
+    <title>MUSIC PLAYER登陆</title>   
+    <style type="text/css"> 
+	     h1 {
+	     font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+         font-size: 32px;
+	     color: #00F;
+	     }
+		 .sub{
+			 width:80px;
+			 height:50px;
+			 font-family:"微软雅黑";
+			 background:#0084FF;
+			 border-radius:4px;
+			 border:1px solid #0b6eb2;
+		 }
+		 
+	     input:focus{
+			 outline:red dotted thin;
+			 }
+		*{   
+            margin: 10px;   
+            padding: 15px;   
+            
+        }   
+       .register{ 
+            width: 350px;   
+            height: 400px; 
+			text-align: left;
+		    background-color: #FFF;
+			border:#0084FF 1px solid; 
+		    box-shadow:2px 2px 4px -2px blue inset,3px 3px 6px #000,6px 6px gray;   
+            position: absolute;   
+            top: 50%;   
+            left: 50%;   
+            -webkit-transform: translate(-50%, -50%);   
+            -moz-transform: translate(-50%, -50%);   
+            -ms-transform: translate(-50%, -50%);   
+            -o-transform: translate(-50%, -50%);   
+            transform: translate(-50%,-50%);   
+        }  
+		
+		
+        body {
+	    background-image: url(u=1808002137,3075754430&fm=27&gp=0.jpg);
+	    background-repeat: no-repeat;
+	    background-size:100% 100%;
+	    background-attachment:fixed;
+        }
+</style> 
+       
+ 
+</head>   
+<body>   
+    <div class="register">
+        <h1 align=center>Yoho! Music登陆</h1>
+        <br>
+        <form method="post">
+        <input placeholder=用户名 type="text" class=txt size="35" maxlength="30" name="username"/>
+        <input placeholder=密码 type="password" class=txt size="35" name="password"/>
+        <br><br><p>
+        <input type="submit" name="submit" value="登陆" class="sub"/>
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="register4.html">注册</a>       
+        </p>
+        </form>
+    </div>  
+</body>   
+</html>  
