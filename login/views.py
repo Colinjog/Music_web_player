@@ -3,6 +3,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 from .models import PlayedMusic, Account
 import datetime
+from django.core.signing import TimestampSigner
 # Create your views here.
 
 
@@ -15,7 +16,10 @@ def sign_in(request):
 
         if temp:
             res = HttpResponseRedirect(reverse('home'))
-            res.set_cookie('username',username,expires=(datetime.datetime.now()+datetime.timedelta(hours=2)))
+            signer = TimestampSigner()
+            # cookie加密 好像只是签名
+            res.set_cookie('username', signer.sign(username),
+                           expires=(datetime.datetime.now() + datetime.timedelta(hours=2)))
 
             return res
         else:
@@ -28,7 +32,7 @@ def sign_in(request):
 def sign_up(request):
     if request.method=='POST':
         username = request.POST['username']
-        password = request.POST['password']
+        password = request.POST['password1']
         password2 = request.POST['password2']
         print("username:",username)
         print("password:",password)
@@ -44,9 +48,10 @@ def sign_up(request):
         account = Account(username=username, password=password)
         account.save()
         context={'username':username}
-        res = HttpResponseRedirect(reverse('home'),context=context)
-        res.set_cookie('username',username,expires=(datetime.datetime.now()+datetime.timedelta(hours=2)))
-
+        res = HttpResponseRedirect(reverse('home'))
+        signer = TimestampSigner()
+        #cookie加密
+        res.set_cookie('username',signer.sign(username),expires=(datetime.datetime.now()+datetime.timedelta(hours=2)))
         return res
     else:
         return render(request,'login/register.html')

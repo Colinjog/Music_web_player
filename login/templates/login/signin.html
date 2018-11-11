@@ -2,25 +2,37 @@
 <html lang="en">   
 <head>   
     <meta charset="utf-8">   
-    <title>MUSIC PLAYER登陆</title>   
+    <title>登陆</title>
     <style type="text/css"> 
 	     h1 {
 	     font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
          font-size: 32px;
-	     color: #00F;
+	     color: #0084FF;
 	     }
+		 .sub{
+			 width:70px;
+			 height:50px;
+			 font-family:"Palatino Linotype", "Book Antiqua", Palatino, serif;
+			 background:#0084FF;
+			 border-radius:4px;
+			 border:1px solid #0b6eb2;
+             font-size:20px;
+             text-align:center;
+             color:white;
+		 }
+		 
 	     input:focus{
 			 outline:red dotted thin;
 			 }
 		*{   
-            margin: 5px;   
+            margin: 10px;   
             padding: 15px;   
             
         }   
        .register{ 
             width: 350px;   
             height: 400px; 
-			text-align: center;
+			text-align: left;
 		    background-color: #FFF;
 			border:#0084FF 1px solid; 
 		    box-shadow:2px 2px 4px -2px blue inset,3px 3px 6px #000,6px 6px gray;   
@@ -33,45 +45,33 @@
             -o-transform: translate(-50%, -50%);   
             transform: translate(-50%,-50%);   
         }  
-		.button1{
-			width:80px;
-			height:30px;
-			background-color: #0CF; 
-			position:absolute;
-			bottom:15px;
-			right:220px;
-		}
-		.button2{
-			width:80px;
-			height:30px;
-			background-color: #0CF; 
-			position:absolute;
-			bottom:15px;
-			right:50px;
-		}
-    body {
-	background-image: url(../../../static/img/register.jpg);
-	background-repeat: no-repeat;
-	background-size:100% 100%;
-	background-attachment:fixed;
-}
-    </style>   
+		
+		
+        body {
+	    background-image: url(../../../static/img/u=1808002137,3075754430&fm=27&gp=0.jpg);
+	    background-repeat: no-repeat;
+	    background-size:100% 100%;
+	    background-attachment:fixed;
+        }
+</style> 
+       
+ 
 </head>   
 <body>   
     <div class="register">
-        <h1 align=center>MUSIC PLAYER登陆</h1>
-        <br>
-        <form method="post">
-        <input placeholder=用户名 type="text" class=txt size="30" maxlength="30" name="username"/>
-        <input placeholder=密码 type="password" class=txt size="30" name="password"/>
-        <div class="button1">
-        <p>登陆</p>
-        <a href="document.getElementByld('button').submit();"></a>
-        </div>
-        <div class="button2">
-        <p>注册</p>
-        <a href="document.getElementByld('button').submit();"></a>
-        </div>
+        <h1 align=center>Yoho!Music 登录</h1>
+
+
+        <form method="post" action="{% url 'login:sign_in' %} ">
+            {% csrf_token %}
+        <h4 align="center" style="font-family: Palatino Linotype;color:red">{{ error_message }}</h4>
+        <input  placeholder=用户名 type="text" class=txt size="20" maxlength="20" style="font-size:20px" name="username"/>
+
+        <input placeholder=密码 type="password" class=txt size="20" maxlength="20" style="font-size:20px" name="password"/>
+        <br><br>
+        <input type="submit" name="submit"  class="sub"  style="font-size:20px;color:white" value="登录"/>
+            <input type="button" onclick="window.location.href='/login/sign_up' "  name="register" class="sub" value="注册" style="margin-left:120px"/>
+
         </form>
     </div>  
 </body>   

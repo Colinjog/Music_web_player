@@ -33,22 +33,33 @@
             <li class="layui-nav-item top"><a href="#" onclick="header(1);">排行榜</a></li>
             <li class="layui-nav-item list"><a href="#" onclick="header(2);">歌单</a></li>
             <li class="layui-nav-item about"><a href="#" onclick="header(3);">关于</a></li>
+            <li class="layui-nav-item about" style="font-size:20px;font-family:Helvetica Neue, Helvetica, Arial, sans-serif;">{{ username }}</li>
+
         </ul>
         <div class="search">
-            <form id="search" action="{% url 'search' 1 %}" method="POST" >
+            <form id="search" action="{% url 'search' 1 %}" method="POST">
                 {% csrf_token %}
-            <input class="layui-input "   id="search" type="search" placeholder="请输入音乐名称回车搜索" onsubmit="return checkForm()" name="music">
+
+                <select name="platform" style="background-color: black;color:white" >
+
+                    <option value="wy" >网易</option>
+                    <option value="qq" selected>QQ</option>
+                    <option value="kugou">酷狗</option>
+                    <option value="kuwo">酷我</option>
+                </select>
+            <input class="layui-input "   id="search" type="search" placeholder="请输入音乐名称回车搜索"  name="music" onsubmit="return beforesubmit()">
             </form>
         </div>
     </div>
 </div>
 <div class="layui-container" id="content">
     <div class="layui-tab" id="top" lay-filter="top">
-        <ul class="layui-tab-title">
-            <li class="layui-this">网易云音乐</li>
-            <li>QQ音乐</li>
-            <li>酷狗音乐</li>
-        </ul>
+{#        <ul class="layui-tab-title">#}
+{#            <li class="layui-this">网易云音乐</li>#}
+{#            <li>QQ音乐</li>#}
+{#            <li>酷狗音乐</li>#}
+{#        </ul>#}
+
     </div>
 {#    music list#}
 {#        music_title music_pic_src music_src author time album_pic_src music_id#}
@@ -81,7 +92,7 @@
                         {{ list.hello}}
                         <li class="music-list-li">
                         {% for music in music_list %}
-                            <div class="layui-row">
+                            <div class="layui-row" >
                                 <div class="layui-col-xs1">
                                     <div class="number">{{ forloop.counter }}</div>
                                 </div>

@@ -2,13 +2,22 @@
 <html lang="en">   
 <head>   
     <meta charset="utf-8">   
-    <title>MUSIC PLAYER注册</title>   
+    <title>注册</title>
     <style type="text/css"> 
 	     h1 {
 	     font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
          font-size: 32px;
-	     color: #00F;
+	     color: #0084FF;
 	     }
+		 .sub{
+			 width:280px;
+			 height:50px;
+			 font-size: 18px;
+			 font-family:"Palatino Linotype", "Book Antiqua", Palatino, serif;
+			 background:#0084FF;
+			 border-radius:4px;
+			 border:1px solid #0b6eb2;
+		 }
 	     input:focus{
 			 outline:red dotted thin;
 		 }
@@ -31,18 +40,11 @@
             -moz-transform: translate(-50%, -50%);   
             -ms-transform: translate(-50%, -50%);   
             -o-transform: translate(-50%, -50%);   
-            transform: translate(-50%,-50%);   
-        }  
-		.button{
-			width:250px;
-			height:30px;
-			background-color: #0CF; 
-			position:absolute;
-			bottom:15px;
-			right:50px;
-		}
+            transform: translate(-50%,-50%);
+
+        } 
     body {
-	background-image:url("../../../static/img/login.jpg");
+	background-image: url(../../../static/img/u=1603358703,3618762421&fm=27&gp=0.jpg);
 	background-repeat: no-repeat;
 	background-size:100% 100%;
 	background-attachment:fixed;
@@ -51,16 +53,17 @@
 </head>   
 <body>   
     <div class="register">
-        <h1 align=center>MUSIC PLAYER注册</h1>
-        <br>
-        <form method="post" >
-        <input placeholder=用户名 type="text" class=txt size="30" maxlength="30" name="username"/>
-        <input placeholder=密码 type="password" class=txt size="30" name="password"/>
-        <input placeholder=确认密码 type="password" class=txt size="30" name="password"/>
-        <div id="button">
-        <p align=center>注册</p>
-        <a href="document.getElementByld('button').submit();"></a>
-        </div>
+        <h1 align=center>注册</h1>
+
+        <h4 align="center" style="font-family: Palatino Linotype;color:red">{{ error_message }}</h4>
+        <form method="post" action="{% url 'login:sign_up' %}">
+            {% csrf_token %}
+        <input placeholder=用户名 type="text" class=txt size="20" maxlength="30" style="font-size:20px" name="username"/>
+        <input placeholder=密码 type="password" class=txt size="20" style="font-size:20px" name="password1"/>
+        <input placeholder=确认密码 type="password" class=txt size="20" name="password2" style="font-size:20px;"/>
+        <p><br><br>
+        <input type="submit" name="submit" value="立即注册" class="sub" style="color:white" />
+        
         </form>
     </div>  
 </body>   
