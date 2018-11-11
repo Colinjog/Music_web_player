@@ -20,7 +20,7 @@ function aplayerLoadingSong(musicList,type){
         });
     }
 }
-var cur_playing_music_id = "0"
+var cur_playing_music_id = "0";
 
 function stopPlay(){
     music = document.getElementById(cur_playing_music_id);
@@ -30,7 +30,8 @@ function stopPlay(){
 }
 function playThis(id){
     if (id==cur_playing_music_id){
-        ;
+        stopPlay();
+        cur_playing_music_id = "0";
     }
     else{
         stopPlay();
