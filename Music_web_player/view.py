@@ -1,7 +1,7 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
-from Music_web_player.API.NetEase.api import NetEase, Parse
+from .API.NetEase.api import Parse, NetEase
 from django.core.signing import TimestampSigner
 from login.models import Account
 from Music_web_player.API.kugou.kugou import getKugouMusic
