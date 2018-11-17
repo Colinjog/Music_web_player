@@ -15,3 +15,4 @@ class PlayedMusic(models.Model):
     account = models.ForeignKey(Account, on_delete=models.CASCADE)
 
 
+
