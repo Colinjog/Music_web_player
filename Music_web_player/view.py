@@ -1,7 +1,7 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
-from .API.NetEase.api import Parse, NetEase
+# from .API.NetEase.api import Parse, NetEase
 from django.core.signing import TimestampSigner
 from login.models import Account
 from Music_web_player.API.kugou.kugou import getKugouMusic
@@ -115,61 +115,61 @@ def search(request,page):
     else:
         return HttpResponseRedirect(reverse('login:sign_in'))
 
-def _search(music,counts=30):
-    api = NetEase()
-    songs = api.search(music)
-
-    '''
-        music list
-        music_title music_pic_src music_src author time album_pic_src music_id lyrics
-    '''
-    songs = songs['songs']
-    music_list = []
-
-
-    for song in songs:
-        try:
-            temp = {}
-            temp['music_id'] = song['id']
-            temp['music_title'] = song['name']
-            temp['author'] = song['artists'][0]['name']
-            songs_url = api.songs_url(ids=[temp['music_id']])
-            album_id = song['album']['id']
-            if songs_url:
-                temp['music_src'] = songs_url[0]['url']
-            else:
-                temp['music_src'] = ""
-                #bug
-                temp['music_src'] = "http://music.163.com/song/media/outer/url?id={}".format(temp['music_id'])
-
-            # temp['album_pic_src'] = api.album(album_id)[0]['al']['picUrl']
-
-            if ('picUrl' in api.album(album_id)[0]['al'].keys()):
-                temp['album_pic_src'] = api.album(album_id)[0]['al']['picUrl']
-            else:
-                temp['album_pic_src'] = ""
-            if not 'picUrl' in song.keys():
-                temp['music_pic_src'] = temp['album_pic_src']
-            else:
-                temp['music_pic_src'] = song['picUrl']
-            temp['tlyrics'] = api.song_tlyric(temp['music_id'])
-            # temp['time'] = song
-            # print(temp)
-        except KeyError:
-            print("KeyError")
-        except IndexError:
-            if not 'album_pic_src' in temp.keys():
-                temp['album_pic_src'] = ""
-                temp['music_pic_src'] = temp['album_pic_src']
-        finally:
-            music_list.append(temp)
-            if len(music_list)>=counts:
-                break
-    global MUSIC_LIST
-    MUSIC_LIST = [music+"wy"]
-    MUSIC_LIST.extend(music_list)
-    return music_list
-
+# def _search(music,counts=30):
+#     api = NetEase()
+#     songs = api.search(music)
+#
+#     '''
+#         music list
+#         music_title music_pic_src music_src author time album_pic_src music_id lyrics
+#     '''
+#     songs = songs['songs']
+#     music_list = []
+#
+#
+#     for song in songs:
+#         try:
+#             temp = {}
+#             temp['music_id'] = song['id']
+#             temp['music_title'] = song['name']
+#             temp['author'] = song['artists'][0]['name']
+#             songs_url = api.songs_url(ids=[temp['music_id']])
+#             album_id = song['album']['id']
+#             if songs_url:
+#                 temp['music_src'] = songs_url[0]['url']
+#             else:
+#                 temp['music_src'] = ""
+#                 #bug
+#                 temp['music_src'] = "http://music.163.com/song/media/outer/url?id={}".format(temp['music_id'])
+#
+#             # temp['album_pic_src'] = api.album(album_id)[0]['al']['picUrl']
+#
+#             if ('picUrl' in api.album(album_id)[0]['al'].keys()):
+#                 temp['album_pic_src'] = api.album(album_id)[0]['al']['picUrl']
+#             else:
+#                 temp['album_pic_src'] = ""
+#             if not 'picUrl' in song.keys():
+#                 temp['music_pic_src'] = temp['album_pic_src']
+#             else:
+#                 temp['music_pic_src'] = song['picUrl']
+#             temp['tlyrics'] = api.song_tlyric(temp['music_id'])
+#             # temp['time'] = song
+#             # print(temp)
+#         except KeyError:
+#             print("KeyError")
+#         except IndexError:
+#             if not 'album_pic_src' in temp.keys():
+#                 temp['album_pic_src'] = ""
+#                 temp['music_pic_src'] = temp['album_pic_src']
+#         finally:
+#             music_list.append(temp)
+#             if len(music_list)>=counts:
+#                 break
+#     global MUSIC_LIST
+#     MUSIC_LIST = [music+"wy"]
+#     MUSIC_LIST.extend(music_list)
+#     return music_list
+#
 
 def _search_multi_api(music,platform, counts=30):
     """
@@ -181,7 +181,8 @@ def _search_multi_api(music,platform, counts=30):
     """
     global MUSIC_LIST
     if platform=="wy":
-        _search(music)
+        pass
+        # _search(music)
     elif platform=="qq":
         music_list = getQQMusic(music,total_count=counts)
 
@@ -200,54 +201,55 @@ def _search_multi_api(music,platform, counts=30):
     else:
         print("音乐平台不存在")
 
-def playlist():
-    api = NetEase()
-    songs = api.top_playlists()
-    music_list = []
-    for song in songs:
-        try:
-            temp = {}
-            temp['music_id'] = song['id']
-            temp['music_title'] = song['name']
-            temp['author'] = song['artists'][0]['name']
-            songs_url = api.songs_url(ids=[temp['music_id']])
-            album_id = song['album']['id']
-            if songs_url:
-                temp['music_src'] = songs_url[0]['url']
-            else:
-                temp['music_src'] = ""
-                #bug
-                temp['music_src'] = "http://music.163.com/song/media/outer/url?id={}".format(temp['music_id'])
-
-            # temp['album_pic_src'] = api.album(album_id)[0]['al']['picUrl']
-
-            if ('picUrl' in api.album(album_id)[0]['al'].keys()):
-                temp['album_pic_src'] = api.album(album_id)[0]['al']['picUrl']
-            else:
-                temp['album_pic_src'] = ""
-            if not 'picUrl' in song.keys():
-                temp['music_pic_src'] = temp['album_pic_src']
-            else:
-                temp['music_pic_src'] = song['picUrl']
-            temp['tlyrics'] = api.song_tlyric(temp['music_id'])
-            # temp['time'] = song
-            # print(temp)
-        except KeyError:
-            print("KeyError")
-        except IndexError:
-            if not 'album_pic_src' in temp.keys():
-                temp['album_pic_src'] = ""
-                temp['music_pic_src'] = temp['album_pic_src']
-        finally:
-            music_list.append(temp)
-            if len(music_list)>=100:
-                break
-    global MUSIC_LIST
-    MUSIC_LIST = ['index']
-    MUSIC_LIST.extend(music_list)
-    return music_list
+# def playlist():
+#     api = NetEase()
+#     songs = api.top_playlists()
+#     music_list = []
+#     for song in songs:
+#         try:
+#             temp = {}
+#             temp['music_id'] = song['id']
+#             temp['music_title'] = song['name']
+#             temp['author'] = song['artists'][0]['name']
+#             songs_url = api.songs_url(ids=[temp['music_id']])
+#             album_id = song['album']['id']
+#             if songs_url:
+#                 temp['music_src'] = songs_url[0]['url']
+#             else:
+#                 temp['music_src'] = ""
+#                 #bug
+#                 temp['music_src'] = "http://music.163.com/song/media/outer/url?id={}".format(temp['music_id'])
+#
+#             # temp['album_pic_src'] = api.album(album_id)[0]['al']['picUrl']
+#
+#             if ('picUrl' in api.album(album_id)[0]['al'].keys()):
+#                 temp['album_pic_src'] = api.album(album_id)[0]['al']['picUrl']
+#             else:
+#                 temp['album_pic_src'] = ""
+#             if not 'picUrl' in song.keys():
+#                 temp['music_pic_src'] = temp['album_pic_src']
+#             else:
+#                 temp['music_pic_src'] = song['picUrl']
+#             temp['tlyrics'] = api.song_tlyric(temp['music_id'])
+#             # temp['time'] = song
+#             # print(temp)
+#         except KeyError:
+#             print("KeyError")
+#         except IndexError:
+#             if not 'album_pic_src' in temp.keys():
+#                 temp['album_pic_src'] = ""
+#                 temp['music_pic_src'] = temp['album_pic_src']
+#         finally:
+#             music_list.append(temp)
+#             if len(music_list)>=100:
+#                 break
+#     global MUSIC_LIST
+#     MUSIC_LIST = ['index']
+#     MUSIC_LIST.extend(music_list)
+#     return music_list
 if __name__=="__main__":
     # _search("hello")
     # _search('shake it off')
     # print(_search("hello"))
-    print(_search("成都"))
+    # print(_search("成都"))
+    pass
