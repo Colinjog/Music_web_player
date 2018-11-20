@@ -1,0 +1,18 @@
+
+<uwsgi>
+  <http>:8000</http>
+ 
+  <chdir>/usr/local/projects/Music_web_player</chdir>
+  <static-map>/static=/usr/local/projects/Music_web_player/static/</static-map>
+  <check-static>/usr/local/projects/Music_web_player/static/</check-static>
+  <wsgi-file>Music_web_player/wsgi.py</wsgi-file>
+  <processes>4</processes>
+  <master/>
+  <workers>3</workers>
+  <daemonize>/usr/local/projects/Music_web_player/script/uwsgi.log</daemonize>
+  <pidfile>/usr/local/projects/Music_web_player/script/uwsgi.pid</pidfile>
+  <vacuum/>
+	 
+</uwsgi>
+
+
